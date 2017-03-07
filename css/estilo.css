@@ -1,0 +1,19 @@
+.video-larg{
+    height: 400px;
+    background-color: beige;
+}
+.video-small{
+    height: 100px;
+    width: 150px;
+    background-color: chartreuse;
+}
+.both{
+    float: left;
+}
+.user{
+    margin-top: 10px;
+}
+.login{
+    margin-top: 5%;
+}
+
