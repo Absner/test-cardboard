@@ -7,6 +7,9 @@
     width: 150px;
     background-color: chartreuse;
 }
+.header-sidenav{
+    height: 150px;
+}
 .both{
     float: left;
 }
@@ -16,4 +19,11 @@
 .login{
     margin-top: 5%;
 }
-
+.waves-effect.waves-blue .waves-ripple {
+     /* The alpha value allows the text and background color
+     of the button to still show through. */
+      background-color: rgba(65, 165, 250, 0.81);
+}
+.margin-top-tabs{
+    margin-top: 10px;
+}
