@@ -7,4 +7,21 @@
   $(document).ready(function(){
     $('ul.tabs').tabs();
     $('select').material_select();
+
+    $('#form1').submit(function(e){
+        e.preventDefault();
+
+        $.ajax({
+            data:   $('#form1').serialize(),
+            type:   'post',
+            url:    './php/addVideoUrl.php',
+            success: function(res){
+                console.log(res);
+            },
+            error:   function(err){
+                console.log(err);
+            }
+
+        });
+    });
   });
