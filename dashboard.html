@@ -98,7 +98,7 @@
                 <!-- contendio del tab Uploar archivo -->
                 <div id="test2" class="col s12">
                     <div class="row">
-                        <form action="#" class="col m12 margin-top-tabs">
+                        <form enctype="multipart/form-data" class="col m12 margin-top-tabs" id="form2">
                             <div class="row">
                                 <div class="input-field col m8 offset-m2">
                                     <input type="text" class="validate">
@@ -126,7 +126,7 @@
                                 <div class="input-field file-field  col m8 offset-m2">
                                     <div class="btn light-blue darken-1">
                                         <span>Open</span>
-                                        <input type="file">
+                                        <input name="videoFile" type="file" id="video2">
                                     </div>
                                     <div class="file-path-wrapper">
                                         <input class="file-path validate" placeholder="Cargar archivo..." type="text">
