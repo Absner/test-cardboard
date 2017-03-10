@@ -3,14 +3,14 @@ require_once('conexion.php');
 
 class comentario extends conexion{
 
-    public function getById($id){
+    public function getById($video_id){
         $get =  parent::prepare('select
         comentario.id,
         comentario.comentario,
         comentario.video_id
         WHERE
             comentario.video_id = ?');
-        $get->bind_param('i',$id);
+        $get->bind_param('i',$video_id);
         $data   =   array();
         if ($get->execute()){
             $get->bind_result($id_com,$com,$id_video);

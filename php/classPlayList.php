@@ -1,26 +1,58 @@
 <?php
 require_once ('conexion.php');
 
-class playlist extends conexion{
+class playList extends conexion{
 
     public function get(){
 
-        $get    =   parent::prepare('SELECT
+        $get    =   parent::query('SELECT
                         video.id,
                         video.url,
                         video.`like`,
                         video.nolike,
                         video.descripcion,
                         video.nombreArchivo,
+                        video.tipoVideo,
                         video.categoria_id,
                         categoria.nombre,
-                        playlist.posicion
+                        playList.posicion
                         FROM
                         video
-                        INNER JOIN playlist ON playlist.video_id = video.id
+                        INNER JOIN playList ON playList.video_id = video.id
                         INNER JOIN categoria ON video.categoria_id = categoria.id
-                        order by playlist.posicion asc');
+                        order by playList.posicion asc');
 
+        $data   =   array();
+        while ($row =   $get->fetch_array()){
+
+            $data[] =   array('id'               =>  $row['id'],
+                              'url'              =>  $row['url'],
+                              'like'             =>  $row['like'],
+                              'nolike'           =>  $row['nolike'],
+                              'descripcion'      =>  $row['descripcion'],
+                              'nombreArchivo'    =>  $row['nombreArchivo'],
+                              'tipoVideo'        =>  $row['tipoVideo'],
+                              'categoria_id'     =>  $row['categoria_id'],
+                              'categoria_name'   =>  $row['nombre'],
+                              'posicion'         =>  $row['posicion']);
+        }
+
+        return $data;
+
+
+    }
+
+    public function set($video_id,$usuario_id){
+        $set    =   parent::prepare('
+                        insert into playList(video_id,usuario_id)
+                        values (?,?);
+                    ');
+        $set->bind_param('ii',$video_id,$usuario_id);
+        if ($set->execute()){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }
 

@@ -9,9 +9,11 @@ $like           =   0;
 $nolike         =   0;
 $usuario        =   1234;
 
+
 $add    =   new video();
-$add->setUrl($url,$like,$nolike,$descripcion,$usuario,$categoria);
-echo $add;
+$resUrl =   $add->urlVideo($url);
+$resAdd =   $add->setUrl($resUrl,$like,$nolike,$descripcion,$usuario,$categoria);
+echo $resAdd;
 
 
 ?>

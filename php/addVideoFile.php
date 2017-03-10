@@ -1,4 +1,13 @@
 <?php
+require_once ('classVideo.php');
+
+$titulo         =   $_POST['titulo'];
+$url            =   null;
+$categoria      =   $_POST['categoria'];
+$descripcion    =   $_POST['descripcion'];
+$like           =   0;
+$nolike         =   0;
+$usuario        =   1234;
 
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
 
@@ -12,8 +21,10 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     //comprobamos si el archivo ha subido
     if ($file && move_uploaded_file($_FILES['videoFile']['tmp_name'],"../files/".$file))
     {
-       //sleep(3);//retrasamos la petición 3 segundos
-       echo $file;//devolvemos el nombre del archivo para pintar la imagen
+
+        $add    =   new video();
+        $resAdd =   $add->setFile($url,$like,$nolike,$descripcion,$file,$usuario,$categoria);
+        echo $resAdd;
     }
 }
 
