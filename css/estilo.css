@@ -4,16 +4,15 @@
     margin-top: 10px;
 }
 .video-small{
-    height: 100px;
-    width: 150px;
+    height: 100px;;
     background-color: chartreuse;
     position: relative;
 }
 .cubierta{
-    height: 115px;
-    width: 150px;
-
-    position:absolute;
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    background-color:aqua;
 }
 .header-sidenav{
     height: 150px;

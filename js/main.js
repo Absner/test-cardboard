@@ -12,8 +12,8 @@
     })
 
     $('#btn-nolike').click(function(){
-        var add =   parseInt($('#like').html()) + 1;
-        $('#nolike').html(add)
+        var addno =   parseInt($('#nolike').html()) + 1;
+        $('#nolike').html(addno)
         //alert(add);
     })
 
