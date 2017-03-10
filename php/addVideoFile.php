@@ -23,7 +23,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     {
 
         $add    =   new video();
-        $resAdd =   $add->setFile($url,$like,$nolike,$descripcion,$file,$usuario,$categoria);
+        $resAdd =   $add->setFile($url,$like,$nolike,$descripcion,$file,$usuario,$categoria,$titulo);
         echo $resAdd;
     }
 }

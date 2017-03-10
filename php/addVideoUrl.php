@@ -12,7 +12,7 @@ $usuario        =   1234;
 
 $add    =   new video();
 $resUrl =   $add->urlVideo($url);
-$resAdd =   $add->setUrl($resUrl,$like,$nolike,$descripcion,$usuario,$categoria);
+$resAdd =   $add->setUrl($resUrl,$like,$nolike,$descripcion,$usuario,$categoria,$titulo);
 echo $resAdd;
 
 

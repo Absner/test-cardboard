@@ -7,6 +7,7 @@ class playList extends conexion{
 
         $get    =   parent::query('SELECT
                         video.id,
+                        video.titulo,
                         video.url,
                         video.`like`,
                         video.nolike,
@@ -34,7 +35,8 @@ class playList extends conexion{
                               'tipoVideo'        =>  $row['tipoVideo'],
                               'categoria_id'     =>  $row['categoria_id'],
                               'categoria_name'   =>  $row['nombre'],
-                              'posicion'         =>  $row['posicion']);
+                              'posicion'         =>  $row['posicion'],
+                              'titulo'           =>  $row['titulo']);
         }
 
         return $data;

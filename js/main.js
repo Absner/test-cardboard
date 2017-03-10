@@ -3,6 +3,19 @@
 
     $('ul.tabs').tabs();
     $('select').material_select();
+    $('#id_video').hide();
+
+    $('#btn-like').click(function(){
+        var add =   parseInt($('#like').html()) + 1;
+        $('#like').html(add)
+        //alert(add);
+    })
+
+    $('#btn-nolike').click(function(){
+        var add =   parseInt($('#like').html()) + 1;
+        $('#nolike').html(add)
+        //alert(add);
+    })
 
     $('#form1').submit(function(e){
         e.preventDefault();
@@ -43,7 +56,7 @@
         }
 
 
-    })
+    });
     /* variable global para verificar el tipo de archivo que se va a cargar */
     var fileExtension = "";
 
@@ -69,10 +82,11 @@
     });*/
   });
 
-function selectVideo(){
-    var url =   "https://www.youtube.com/embed/QMvgSZWpq-E?rel=0&amp;controls=0&amp;showinfo=0";
+function selectVideo(item,id){
+    var url =   'https://www.youtube.com/embed/'+item+'?rel=0&amp;controls=0&amp;showinfo=0';
         $('#video-larg-tv').attr('src',url);
         //$('#video-larg-tv').load();
+    getVideoId(id);
 }
 
 function formatoVideo(extension){
@@ -92,30 +106,40 @@ function getPlayList(){
             url:    './php/getPlayList.php',
             type:   'GET',
             success: function(item){
-                //console.log(JSON.parse(item));
                 res =   JSON.parse(item);
-                $.each(res, function(key,res){
-                    refresh +=  '<div class="col s5 m5 video-small" >';
-                    refresh +=  '<div class="cubierta"></div>';
-                    refresh +=  '<iframe  width="150" height="113" src="https://www.youtube.com/embed/'+res.url+'?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>';
-                    refresh +=  '</div>';
-                    refresh +=  '<div class="col s5 m7">';
-                    refresh +=  '<ul>';
-                    refresh +=  '<li>Titulo</li>';
-                    refresh +=  '<li>Descripción</li>';
-                    refresh +=  '<li>Like</li>';
-                    refresh +=  '<li>No like</li>';
-                    refresh +=  '</ul>';
-                    refresh +=  '</div>';
-
+                /*$.each(res, function(key,res){
+                    refresh =   "<div onclick="'selectVideo('"holaMundo"')'">hola</div>";
                 });
-                //console.log(res);
-                $('#lista').html(refresh);
+                console.log(res);
+                $('#lista').html(refresh);*/
+
+
             },
             error: function(status, err){
                 alert('error.');
-                console.log(err);
+                //console.log(err);
             }
 
         });
 }
+
+var getVideoId  =   function(id){
+
+    $.ajax({
+        url:        './php/getVideoId.php?id='+id,
+        type:       'GET',
+        success:    function(item){
+            res =   JSON.parse(item);
+            $.each(res, function(key,res){
+                console.log(res.id);
+                $('#titulo_v').html(res.titulo);
+                $('#descripcion_v').html(res.descripcion);
+                $('#like').html(res.like);
+                $('#nolike').html(res.nolike);
+                $('#id_video').html(res.id);
+            });
+            //$('#titulo_v').html(res.)
+        }
+    })
+}
+

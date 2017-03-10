@@ -1,3 +1,8 @@
+<?php
+require_once ('./php/classPlayList.php');
+$playList   =   new playList();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,26 +31,29 @@
             <div class="card blue-grey darken-1">
                 <div class="card-content white-black">
                     <!-- incia contenedor de lso video del playlist -->
-                    <div id="lista" class="row" onclick="selectVideo('e');">
+                    <div id="lista" class="row"></div>
+                    <?php foreach ($playList->get() as $lista){?>
+                    <div id="lista" class="row" onclick="selectVideo('<? echo $lista['url'] ?>','<? echo $lista['id']?>');">
                         <!-- imagen video playList -->
                         <div class="col s5 m5 video-small" >
                             <div class="cubierta">
 
                             </div>
-                            <iframe  width="150" height="113" src="https://www.youtube.com/embed/uEKDcJPWhzg?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                            <iframe  width="150" height="113" src="https://www.youtube.com/embed/<?php echo $lista['url'];?>?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
                         </div>
 
-                        <!-- descripcion video PlayList  -->
+                        <!-- descripcion video PlayList -->
                         <div class="col s5 m7">
                             <ul>
-                                <li>Titulo</li>
-                                <li>Descripción</li>
-                                <li>Like</li>
-                                <li>No like</li>
+                                <li><?php echo $lista['titulo']?></li>
+                                <li><?php echo $lista['descripcion']?></li>
+                                <li><?php echo $lista['like']?></li>
+                                <li><?php echo $lista['nolike']?></li>
                             </ul>
                         </div>
                     </div>
                     <!-- fin contenedor video play list -->
+                    <?php };?>
 
 
                 </div>
@@ -67,12 +75,13 @@
                 <div class="col s5 m10 offset-m1">
                     <div class="row">
                         <div class="col m6">
-                            <h5>Titulo</h5>
-                            <h7>Descripcion</h7>
+                            <h5 id="titulo_v">Titulo</h5>
+                            <h7 id="descripcion_v">Descripcion</h7>
+                            <div id="id_video"></div>
                         </div>
                         <div class="col m6">
-                            <button class="btn"><i class="material-icons left">thumb_up</i>Me gusta</button><span>38</span>
-                            <button class="btn"><i class="material-icons left">thumb_down</i>No me gusta</button><span>60</span>
+                            <button id="btn-like" class="btn"><i class="material-icons left">thumb_up</i>Me gusta</button><span id="like"></span>
+                            <button id="btn-nolike" class="btn"><i class="material-icons left">thumb_down</i>No me gusta</button><span id="nolike"></span>
                         </div>
                     </div>
                 </div>
